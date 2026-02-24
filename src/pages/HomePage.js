@@ -4,8 +4,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import axios from 'axios';
 import { useProfile } from '../context/ProfileContext';
 import Slideshow from '../components/Slideshow';
-import api from "../api";
-const BASE_URL = process.env.REACT_APP_API_URL;
+const BASE_URL = process.env.REACT_APP_API_URL || "";
 /* ── Typewriter hook ── */
 function useTypewriter(text, speed = 45, startDelay = 0) {
   const [shown, setShown] = useState('');
