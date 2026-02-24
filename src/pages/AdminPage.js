@@ -36,18 +36,22 @@ export default function AdminPage() {
   const defaultForm = () => ({ title: '', description: '', date: new Date().toISOString().split('T')[0], location: '', mood: 'happy', aiCaption: '', tags: '' });
   const [forms, setForms] = useState([]);
 
-    try {
-      axios.post(
-        `${BASE_URL}/api/admin/login`,
-        { secret }
-      );
+   const handleLogin = async (e) => {
+  e.preventDefault();
 
-      setAuthed(true);
-      toast.success("Access granted 🔐");
+  try {
+    await axios.post(
+      `${BASE_URL}/api/admin/login`,
+      { secret }
+    );
 
-    } catch {
-      toast.error("Wrong secret key");
-    }
+    setAuthed(true);
+    toast.success("Access granted 🔐");
+
+  } catch (err) {
+    toast.error("Wrong secret key");
+  }
+};
   // Profile form
   const [pForm, setPForm] = useState({
     name: profile?.name || '', bio: profile?.bio || '',
