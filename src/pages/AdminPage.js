@@ -36,6 +36,18 @@ export default function AdminPage() {
   const defaultForm = () => ({ title: '', description: '', date: new Date().toISOString().split('T')[0], location: '', mood: 'happy', aiCaption: '', tags: '' });
   const [forms, setForms] = useState([]);
 
+    try {
+      axios.post(
+        `${BASE_URL}/api/admin/login`,
+        { secret }
+      );
+
+      setAuthed(true);
+      toast.success("Access granted 🔐");
+
+    } catch {
+      toast.error("Wrong secret key");
+    }
   // Profile form
   const [pForm, setPForm] = useState({
     name: profile?.name || '', bio: profile?.bio || '',
@@ -115,7 +127,7 @@ export default function AdminPage() {
         <div style={{ fontSize: '2.5rem', marginBottom: 20 }}>🔐</div>
         <h2 style={{ fontFamily: 'var(--font-display)', marginBottom: 8 }}>Admin Access</h2>
         <p style={{ color: 'var(--mist)', marginBottom: 32, fontSize: 14 }}>Enter your admin secret to manage memories</p>
-        <form onSubmit={e => { e.preventDefault(); setAuthed(true); }}>
+       <form onSubmit={handleLogin}>
           <div className="form-group" style={{ marginBottom: 28 }}>
             <label>Admin Secret</label>
             <input className="input" type="password" value={secret} onChange={e => setSecret(e.target.value)} placeholder="Enter ADMIN_SECRET from .env" required />
