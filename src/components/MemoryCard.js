@@ -5,7 +5,12 @@ const MOOD_ICON = { happy:'😊', nostalgic:'🥺', excited:'🎉', peaceful:'�
 
 export default function MemoryCard({ memory, index = 0 }) {
   const [flipped, setFlipped] = useState(false);
-  const src = memory.photoUrl?.startsWith('http') ? memory.photoUrl : `http://localhost:5000${memory.photoUrl}`;
+
+  const BASE_URL = process.env.REACT_APP_API_URL;
+
+  const src = memory.photoUrl?.startsWith('http')
+    ? memory.photoUrl
+    : `${BASE_URL}${memory.photoUrl}`;
 
   return (
     <motion.div

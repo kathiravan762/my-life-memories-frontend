@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 function TimelineCard({ memory, side, index }) {
-  const src = memory.photoUrl?.startsWith('http') ? memory.photoUrl : `http://localhost:5000${memory.photoUrl}`;
+ const src = memory.photoUrl?.startsWith('http')
+  ? memory.photoUrl
+  : `${BASE_URL}${memory.photoUrl}`;
   const isLeft = side === 'left';
 
   return (
@@ -97,9 +100,14 @@ export default function TimelinePage() {
   const [timeline, setTimeline] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    axios.get('/api/memories/timeline').then(r => setTimeline(r.data)).finally(() => setLoading(false));
-  }, []);
+  
+    useEffect(() => {
+  axios
+    .get(`${process.env.REACT_APP_API_URL}/api/memories`)
+    .then(r => setMemories(r.data))
+    .finally(() => setLoading(false));
+}, []);
+  
 
   return (
     <div className="page">

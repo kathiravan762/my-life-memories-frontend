@@ -3,15 +3,23 @@ import { motion } from 'framer-motion';
 import axios from 'axios';
 import MemoryCard from '../components/MemoryCard';
 
+
+
 export default function MemoriesPage() {
   const [memories, setMemories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
   const [search, setSearch] = useState('');
-
-  useEffect(() => {
-    axios.get('/api/memories').then(r => setMemories(r.data)).finally(() => setLoading(false));
-  }, []);
+const BASE_URL = process.env.REACT_APP_API_URL;
+  
+    useEffect(() => {
+  axios
+    .get(`${process.env.REACT_APP_API_URL}/api/memories`)
+    .then(r => setMemories(r.data))
+    .finally(() => setLoading(false));
+}, []);
+    
+  
 
   const filtered = memories.filter(m => {
     if (filter === 'favorites' && !m.isFavorite) return false;

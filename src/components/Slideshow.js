@@ -17,7 +17,11 @@ export default function Slideshow({ memories }) {
 
   if (!memories.length) return null;
   const m = memories[idx];
-  const src = m.photoUrl?.startsWith('http') ? m.photoUrl : `http://localhost:5000${m.photoUrl}`;
+ const BASE_URL = process.env.REACT_APP_API_URL;
+
+const src = m.photoUrl?.startsWith('http')
+  ? m.photoUrl
+  : `${BASE_URL}${m.photoUrl}`;
 
   const variants = {
     enter: d => ({ x: d > 0 ? '100%' : '-100%', scale: 1.05, opacity: 0 }),

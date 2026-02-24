@@ -5,6 +5,7 @@ import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useProfile } from '../context/ProfileContext';
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 const MOODS = ['happy','nostalgic','excited','peaceful','adventurous','loving','proud','grateful'];
 const MOOD_ICONS = { happy:'😊', nostalgic:'🥺', excited:'🎉', peaceful:'😌', adventurous:'🌟', loving:'💕', proud:'🏆', grateful:'🙏' };
@@ -61,7 +62,7 @@ export default function AdminPage() {
     setGenCaption(true);
     try {
       const f = forms[i];
-      const r = await axios.post('/api/ai/caption', { title: f.title || 'Memory', description: f.description, date: f.date, mood: f.mood, location: f.location });
+      const r = await axios.post(`${BASE_URL}/api/ai/caption`,  { title: f.title || 'Memory', description: f.description, date: f.date, mood: f.mood, location: f.location });
       upd(i, 'aiCaption', r.data.caption);
       toast.success('Caption ready ✦');
     } catch { toast.error('AI unavailable'); }
@@ -83,7 +84,7 @@ export default function AdminPage() {
         else fd.append(k, v);
       });
       try {
-       await axios.post('http://localhost:5000/api/memories', fd, { headers: { 'Content-Type': 'multipart/form-data', 'x-admin-secret': secret } });
+       await axios.post(`${BASE_URL}/api/memories`, fd, { headers: { 'Content-Type': 'multipart/form-data', 'x-admin-secret': secret } });
         ok++;
       } catch { toast.error(`Failed memory ${i + 1}`); }
     }
@@ -99,7 +100,7 @@ export default function AdminPage() {
       Object.entries(pForm).forEach(([k, v]) => fd.append(k, v));
       if (profilePhoto) fd.append('profilePhoto', profilePhoto);
       if (bgMusic) fd.append('backgroundMusic', bgMusic);
-      await axios.put('http://localhost:5000/api/profile', fd, { headers: { 'Content-Type': 'multipart/form-data', 'x-admin-secret': secret } });
+      await axios.put(`${BASE_URL}/api/profile`, fd, { headers: { 'Content-Type': 'multipart/form-data', 'x-admin-secret': secret } });
       toast.success('Profile updated!');
       refetch();
     } catch { toast.error('Failed to save'); }

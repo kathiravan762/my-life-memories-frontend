@@ -11,7 +11,9 @@ export default function MusicPlayer() {
 
   useEffect(() => { if (audio.current) audio.current.volume = vol; }, [vol]);
 
-  const src = profile?.backgroundMusic ? `http://localhost:5000${profile.backgroundMusic}` : null;
+const src = profile?.backgroundMusic
+  ? `${process.env.REACT_APP_API_URL}${profile.backgroundMusic}`
+  : null;
   if (!src || !profile?.musicEnabled) return null;
 
   const toggle = () => {
