@@ -12,6 +12,7 @@ export default function MusicPlayer() {
   useEffect(() => { if (audio.current) audio.current.volume = vol; }, [vol]);
 const src = profile?.backgroundMusic || null;
   if (!src || !profile?.musicEnabled) return null;
+  console.log("BackgroundMusic:", profile?.backgroundMusic);
 
   const toggle = () => {
     if (!audio.current) return;
