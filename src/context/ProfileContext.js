@@ -11,10 +11,7 @@ export const ProfileProvider = ({ children }) => {
 
   const fetchProfile = async () => {
     try {
-      const BASE_URL = process.env.REACT_APP_API_URL;
-  const res = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/profile`
-      );
+   <img src={profile.profilePhoto} />
       setProfile(res.data);
     } catch (e) {
       console.error('Profile fetch failed', e);
