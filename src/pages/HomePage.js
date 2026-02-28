@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import axios from 'axios';
 import { useProfile } from '../context/ProfileContext';
 import Slideshow from '../components/Slideshow';
-const BASE_URL = process.env.REACT_APP_API_URL || "";
+const BASE_URL = process.env.REACT_APP_API_URL;
 /* ── Typewriter hook ── */
 function useTypewriter(text, speed = 45, startDelay = 0) {
   const [shown, setShown] = useState('');
@@ -109,9 +109,10 @@ export default function HomePage() {
       setStats({ total: res.data.length, years: yrs, favorites: fav });
     }).catch(() => {});
   }, []);
-const profileSrc = profile?.profilePhoto
+/* const profileSrc = profile?.profilePhoto
   ? `${BASE_URL}${profile.profilePhoto}`
-  : null;
+  : null; */
+  const profileSrc = profile?.profilePhoto || "";
   const dob = profile?.dateOfBirth ? new Date(profile.dateOfBirth).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
 
   return (
