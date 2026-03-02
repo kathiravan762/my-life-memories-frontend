@@ -262,14 +262,9 @@ export default function HomePage() {
             transition={{ delay: 2, duration: 0.7 }}
             style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link to="/memories" className="btn btn-ember" style={{ fontSize: 15, padding: '14px 36px' }}>
-              Explore Memories ✦
+              Explore Memories *
             </Link>
-            <Link to="/timeline" className="btn btn-gold" style={{ fontSize: 15 }}>
-              View Timeline
-            </Link>
-            <Link to="/story" className="btn btn-ghost" style={{ fontSize: 15 }}>
-              Read My Story
-            </Link>
+           
           </motion.div>
         </motion.div>
 
@@ -358,3 +353,9 @@ export default function HomePage() {
     </div>
   );
 }
+ /*<Link to="/timeline" className="btn btn-gold" style={{ fontSize: 15 }}>
+              View Timeline
+            </Link>
+            <Link to="/story" className="btn btn-ghost" style={{ fontSize: 15 }}>
+              Read My Story
+            </Link> */
