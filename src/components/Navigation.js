@@ -20,8 +20,8 @@ export default function Navigation() {
   const links = [
     { to: '/', label: 'Home' },
     { to: '/memories', label: 'Memories' },
-    { to: '/timeline', label: 'Timeline' },
-    { to: '/story', label: 'My Story' },
+   /* { to: '/timeline', label: 'Timeline' },
+    { to: '/story', label: 'My Story' }, */
   ];
 
   return (
@@ -45,14 +45,30 @@ export default function Navigation() {
         {/* Logo */}
         <Link to="/" style={{ textDecoration: 'none' }}>
           <motion.div whileHover={{ scale: 1.03 }} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <div style={{
-              width: 32, height: 32,
-              background: 'linear-gradient(135deg, var(--ember), var(--gold))',
-              borderRadius: '50%',
-              boxShadow: '0 0 18px rgba(255,107,53,0.5)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 14,
-            }}>✦</div>
+         <div style={{
+  width: 32,
+  height: 32,
+  // Split background: top 50% red, bottom 50% white
+  background: 'linear-gradient(to bottom, #e60000 50%, #ffffff 50%)',
+  borderRadius: '50%',
+  border: '1px solid #000',
+  position: 'relative',
+  display: 'flex',
+  justifyContent: 'center',
+  boxShadow: '0 0 10px rgba(0,0,0,0.3)',
+}}>
+  {/* The handle of the fan */}
+  <div style={{
+    position: 'absolute',
+    bottom: -6,
+    width: 6,
+    height: 10,
+    backgroundColor: '#ffffff',
+    border: '1px solid #000',
+    borderTop: 'none',
+  }} />
+</div>
+
             <span style={{
               fontFamily: 'var(--font-cinzel)', fontSize: 14, letterSpacing: '0.15em',
               color: 'var(--pearl)', fontWeight: 400,
