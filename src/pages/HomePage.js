@@ -268,16 +268,16 @@ export default function HomePage() {
           </motion.div>
         </motion.div>
 
-        {/* Scroll hint */}
+       // {/* Scroll hint */}
         <motion.div
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 3 }}
           style={{ position: 'absolute', bottom: 32, left: '50%', transform: 'translateX(-50%)', zIndex: 1 }}>
-          <motion.div
+      {/*  <motion.div
             animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity }}
             style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
             <div style={{ fontSize: 11, color: 'var(--fog)', letterSpacing: '0.2em', textTransform: 'uppercase' }}>Scroll</div>
             <div style={{ width: 1, height: 40, background: 'linear-gradient(to bottom, var(--ember), transparent)' }} />
-          </motion.div>
+          </motion.div> */}
         </motion.div>
       </section>
 
@@ -359,3 +359,5 @@ export default function HomePage() {
             <Link to="/story" className="btn btn-ghost" style={{ fontSize: 15 }}>
               Read My Story
             </Link> */
+
+            
