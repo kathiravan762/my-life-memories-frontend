@@ -268,7 +268,7 @@ export default function HomePage() {
           </motion.div>
         </motion.div>
 
-       // {/* Scroll hint */}
+        {/* Scroll hint */}
         {/*  <motion.div
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 3 }}
           style={{ position: 'absolute', bottom: 32, left: '50%', transform: 'translateX(-50%)', zIndex: 1 }}>
